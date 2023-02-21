@@ -30,6 +30,9 @@ DerivedData
 *.xcuserstate
 project.xcworkspace
 
+# Cocoapods
+Pods/
+
 # Android/IntelliJ
 #
 build/
