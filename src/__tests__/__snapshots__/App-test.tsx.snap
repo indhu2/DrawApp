@@ -1,0 +1,163 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`App renders correctly 1`] = `
+<View
+  style={
+    Object {
+      "flex": 1,
+    }
+  }
+>
+  <RNCSafeAreaView
+    edges={
+      Array [
+        "top",
+        "right",
+        "left",
+      ]
+    }
+    style={
+      Object {
+        "backgroundColor": "#FCF5F3",
+      }
+    }
+  />
+  <View
+    style={
+      Object {
+        "alignContent": "center",
+        "alignItems": "center",
+        "backgroundColor": "#F93333",
+        "flex": 1,
+        "justifyContent": "center",
+      }
+    }
+  >
+    <View
+      accessibilityIgnoresInvertColors={true}
+      style={
+        Object {
+          "alignItems": "center",
+          "height": 1334,
+          "justifyContent": "center",
+          "width": 750,
+        }
+      }
+    >
+      <Image
+        resizeMode="stretch"
+        source={
+          Object {
+            "testUri": "../../../src/assets/images/png/splash_bg.png",
+          }
+        }
+        style={
+          Array [
+            Object {
+              "bottom": 0,
+              "left": 0,
+              "position": "absolute",
+              "right": 0,
+              "top": 0,
+            },
+            Object {
+              "height": 1334,
+              "width": 750,
+            },
+            undefined,
+          ]
+        }
+      />
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "justifyContent": "center",
+            "position": "absolute",
+            "zIndex": 1,
+          }
+        }
+      >
+        <svg
+          data-file-name="SvgLogo"
+        />
+        <Text
+          align="left"
+          bold={false}
+          color="#F93333"
+          fontFamily="Nunito-Regular"
+          fontSize={25.142857142857142}
+          fontWeight={null}
+          lineHeight={0}
+          marginBottom={0}
+          marginLeft={0}
+          marginRight={0}
+          marginTop={0}
+          style={
+            Array [
+              Object {
+                "color": "#F93333",
+                "fontFamily": "Nunito-Regular",
+                "fontSize": 25.142857142857142,
+                "textAlign": "left",
+              },
+              Object {
+                "marginVertical": 31.428571428571427,
+                "textAlign": "center",
+              },
+            ]
+          }
+          width={null}
+        >
+          Education
+           
+          <Text
+            align="left"
+            bold={false}
+            color="#353535"
+            fontFamily="Nunito-Regular"
+            fontSize={25.142857142857142}
+            fontWeight={null}
+            lineHeight={0}
+            marginBottom={0}
+            marginLeft={0}
+            marginRight={0}
+            marginTop={0}
+            style={
+              Array [
+                Object {
+                  "color": "#353535",
+                  "fontFamily": "Nunito-Regular",
+                  "fontSize": 25.142857142857142,
+                  "textAlign": "left",
+                },
+                Object {
+                  "marginVertical": 31.428571428571427,
+                  "textAlign": "center",
+                },
+              ]
+            }
+            width={null}
+          >
+            without boundaries
+          </Text>
+        </Text>
+      </View>
+      <View
+        style={
+          Object {
+            "bottom": 80,
+            "position": "absolute",
+          }
+        }
+      >
+        <ActivityIndicator
+          animating={true}
+          color="#F93333"
+          size="large"
+        />
+      </View>
+    </View>
+  </View>
+</View>
+`;
