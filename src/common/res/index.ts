@@ -1,6 +1,5 @@
 import Colors from "./Colors";
+import Images from "./Images";
 import Strings from "./Strings";
-import Images from './Images';
-import CommonStyles from "./CommonStyles";
 
-export {Colors, Strings, Images, CommonStyles}
+export {Colors, Strings, Images}

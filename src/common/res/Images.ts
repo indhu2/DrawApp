@@ -1,6 +1,5 @@
 const Images = {
-    //sample -- image: require('@root/assets/images/png/image_name.png'),
-
+    LeftArrow: require('../../assets/images/left-arrow.png')
 }
 
-export default Images
+export default Images;

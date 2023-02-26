@@ -1,14 +1,17 @@
-import React from 'react';
-import { Text, View } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
-import { MainFrame } from './common/components/MainFrame';
-import { Colors } from './common/res';
+import React from 'react'
+import Home from './screens/Home';
+import {Provider} from 'react-redux';
+import { persistor, store } from './redux/store';
+import { PersistGate } from 'redux-persist/integration/react';
 
 const App = () => {
-  return ( 
-<MainFrame containerStyle={{flex: 1,}}>
-      <Text style={{color: Colors.black}}>App</Text>
-   </MainFrame>
+  return (
+    <Provider store={store}>
+      <PersistGate loading={null} persistor={persistor}>
+        <Home />
+      </PersistGate>
+    </Provider>
   );
-};
-export default App;
+}
+
+export default App

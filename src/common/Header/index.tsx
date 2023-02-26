@@ -1,37 +1,32 @@
-import { View, StyleSheet, Text, TouchableOpacity } from 'react-native'
+import { View, StyleSheet, TouchableOpacity, Text, Image } from 'react-native'
 import React from 'react'
-import { largeFontSize } from '../../res/CommonStyles';
-import { Colors } from '../../res';
-import { deviceWidth, moderateScale } from '../../utils/ScreenRatio';
-
+import { Colors, Images } from '../res';
+import { isIos } from '../utils/utils';
+import { deviceWidth, moderateScale } from '../utils/ScreenRatio';
 interface HeaderProps {
     headerText: string;
     showBackButton?: boolean;
-    onBackPress: () => void;
+    onBackPress?: () => void;
 }
 
 const Header = ({headerText, showBackButton, onBackPress}: HeaderProps) => {  
   return (
     <View style={styles.container}>
       {showBackButton ? <TouchableOpacity  onPress={() => onBackPress()} style={styles.backButtonStyle}>
-        <Text>Back</Text>
+        <Image style={styles.backButton} source={Images.LeftArrow} />
       </TouchableOpacity> : null}
-      <Text
-        style={styles.headerText}>
+      <Text style={styles.headerText}>
         {headerText}
       </Text>
     </View>
   );
 }
 
-Header.defaultProps = {
-    showBackButton: true,
-}
 
 const styles = StyleSheet.create({
   container: {
     backgroundColor: Colors.primary,
-    height: '10%',
+    paddingVertical: moderateScale(24),
     borderBottomLeftRadius: moderateScale(10),
     borderBottomRightRadius: moderateScale(10),
     alignItems: 'center',
@@ -41,8 +36,9 @@ const styles = StyleSheet.create({
   headerText: {
     textAlign: 'center',
     width: deviceWidth,
-    fontSize: largeFontSize,
     color: Colors.white,
+    fontSize: 20,
+
   },
   backButtonStyle: {
     position: 'absolute',
@@ -51,6 +47,10 @@ const styles = StyleSheet.create({
     padding: 5,
     paddingHorizontal: 10,
   },
+  backButton: {
+    width: 30,
+    height: 30,
+  }
 });
 
 export default Header;

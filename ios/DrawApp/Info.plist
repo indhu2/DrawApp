@@ -24,6 +24,10 @@
 	<string>$(CURRENT_PROJECT_VERSION)</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>&quot;DrawApp&quot;  would like to access the Storage</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>&quot;DrawApp&quot;  would like to access the Storage</string>
 	<key>NSAppTransportSecurity</key>
 	<dict>
 		<key>NSExceptionDomains</key>
