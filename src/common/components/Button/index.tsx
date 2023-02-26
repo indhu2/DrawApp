@@ -1,20 +1,46 @@
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import React from "react";
 import { Colors } from "../../res";
+import { moderateScale } from "../../utils/ScreenRatio";
 
 interface ButtonViewProps {
-    buttonText?: string;
-    onButtonPress?: () => void;
-    style?: {};
-    isPressable?: boolean;
+  buttonText?: string;
+  onButtonPress?: () => void;
+  style?: {};
+  textStyle?: {};
+  isPressable?: boolean;
 }
 
-const ButtonView = ({buttonText, style}: ButtonViewProps) => {
-  return (
-    <View style={[styles.buttonStyle,style]}>
-      <Text style={{ color: Colors.white }}>{buttonText}</Text>
-    </View>
-  );
+const ButtonView = ({
+  isPressable,
+  buttonText,
+  onButtonPress,
+  style,
+  textStyle,
+}: ButtonViewProps) => {
+  if (isPressable) {
+    return (
+      <TouchableOpacity
+        onPress={onButtonPress}
+        style={[styles.buttonStyle, style]}
+      >
+        <Text style={[{ color: Colors.white }, textStyle]}>{buttonText}</Text>
+      </TouchableOpacity>
+    );
+  } else {
+    return (
+      <View style={[styles.buttonStyle, style]}>
+        <Text style={[{ color: Colors.white }, textStyle]}>{buttonText}</Text>
+      </View>
+    );
+  }
+};
+
+ButtonView.defaultProps = {
+  buttonText: "",
+  style: {},
+  textStyle: {},
+  isPressable: false,
 };
 
 const styles = StyleSheet.create({

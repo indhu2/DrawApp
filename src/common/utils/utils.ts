@@ -1,4 +1,5 @@
 import { Alert, Platform, ToastAndroid } from "react-native";
+import { openSettings } from "react-native-permissions";
 
 export const isIos = Platform.OS === "ios";
 
