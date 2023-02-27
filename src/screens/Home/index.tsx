@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import { StyleSheet, View, BackHandler, Alert, AppState, SafeAreaView } from "react-native";
 import RNSketchCanvas from "@terrylinla/react-native-sketch-canvas";
 import { isIos, showToast } from "../../common/utils/utils";
@@ -10,7 +10,6 @@ import {
   Permission,
   PERMISSION_TYPE,
 } from "../../common/utils/AppPermissions";
-import useAppIsActive from "../../common/utils/useAppIsActive";
 import CustomAlert from "../../common/components/CustomAlert";
 import { deviceWidth, moderateScale } from "../../common/utils/ScreenRatio";
 import ViewSavedFiles from "../../common/components/ViewSavedFiles";
@@ -24,23 +23,61 @@ const Home = () => {
   const [showFilesView, setShowFilesView] = useState(false);
 
   const [currentFile, setCurrentFile] = useState({});
+  const appStateRef = useRef(AppState.currentState);
 
   const dispatch = useDispatch();
 
   const {storedFiles} = useSelector((state: RootState) => state.home);  
 
-  const backAction = () => {
-    BackHandler.exitApp();
+  const handleAppStateChange = useCallback((nextAppState) => {
+    if (
+      appStateRef.current.match(/inactive|background/) &&
+      nextAppState === "active"
+    ) {
+      requestStorageAccess();
+      // callback(nextAppState);
+    }
+
+    appStateRef.current = nextAppState;
+  }, []);
+
+  console.log("showFilesView--- ", showFilesView);
+  
+
+  // const backAction = () => {
+  //   if (showFilesView) {
+  //     setShowFilesView(false);
+  //   } else {
+  //     BackHandler.exitApp();
+  //   }
+  //   return true;
+  // };
+
+  function backAction() {
+
+
+      Alert.alert(
+        'Exit App',
+        'Are you sure you want to exit?',
+        [
+          {text: 'No', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
+          {text: 'Yes', onPress: () => BackHandler.exitApp()},
+        ],
+        { cancelable: false })
+
     return true;
-  };
+
+  }
 
   useEffect(() => {
     const backHandler = BackHandler.addEventListener(
       "hardwareBackPress",
-      backAction
+     backAction
     );
+    const subscription = AppState.addEventListener("change", handleAppStateChange);
     return () => {
-      backHandler.remove()
+      backHandler?.remove()
+      subscription?.remove();
     }
   }, []);
 
@@ -50,8 +87,6 @@ const Home = () => {
     setPermission(isPermission);
     setShowAlertModal(!isPermission);
   }, []);
-
-  useAppIsActive(() => requestStorageAccess());
 
   const onSaveFile = () => {
     let saveFile = {
@@ -74,7 +109,7 @@ const Home = () => {
   }
 
   if(showFilesView) {
-    return <ViewSavedFiles onGoBackPress={(status) => setShowFilesView(status)}/>
+    return <ViewSavedFiles onGoBackPress={(status) => setShowFilesView(false)}/>
   }
 
   return (
